@@ -14,22 +14,17 @@ class BoardListCreateVIew(generics.ListCreateAPIView):
     queryset = Board.objects.all().order_by("-created_at")
     serializer_class = BoardSerializer
 
-# 게시글 상세페이지, 업데이트API
-class BoardDetailUpdateView(generics.RetrieveUpdateAPIView):
+# 게시글 상세페이지, 업데이트, 삭제 API
+class BoardDetailUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
     lookup_field = "pk"
 
-# 게시글 삭제
-class BoardDeleteView(generics.DestroyAPIView):
-    """
-    게시글 삭제의 경우 request요청시 body로 writer정보와 password정보를 전달
-    전달된 writer정보와 password 정보를 비교하여 최종 삭제를 진행
-    """
-    queryset = Board.objects.all()
-    serializer_class = BoardSerializer
-    
     def destroy(self, request, *args, **kwargs):
+        """
+        게시글 삭제의 경우 request요청시 body로 writer정보와 password정보를 전달
+        전달된 writer정보와 password 정보를 비교하여 최종 삭제를 진행
+        """
         data = json.loads(request.body)
         instance = self.get_object()
         if not instance.writer == data["writer"]:
@@ -37,6 +32,7 @@ class BoardDeleteView(generics.DestroyAPIView):
         password = data["password"]
         if not bcrypt.checkpw(password.encode('utf-8'), instance.password.encode('utf-8')):
             raise ValidationError( '비밀번호가 맞지 않습니다.')
+        
         self.perform_destroy(instance)
+        
         return Response(status=status.HTTP_204_NO_CONTENT)
-    
