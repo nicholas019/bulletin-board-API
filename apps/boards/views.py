@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from rest_framework.exceptions import ValidationError
 
 from apps.boards.models import Board
+from apps.boards.pagination import PageNumberPagination
 
 from apps.boards.serialiazers import BoardSerializer
 
@@ -13,6 +14,7 @@ from apps.boards.serialiazers import BoardSerializer
 class BoardListCreateVIew(generics.ListCreateAPIView):
     queryset = Board.objects.all().order_by("-created_at")
     serializer_class = BoardSerializer
+    pagination_class = PageNumberPagination
 
 # 게시글 상세페이지, 업데이트, 삭제 API
 class BoardDetailUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
