@@ -2,7 +2,7 @@ import pymysql
 
 from pathlib import Path
 
-from my_settings import SECRET_KEY, DATABASES
+from my_settings import SECRET_KEY, DATABASES, WEATHER_API_Key
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -12,6 +12,8 @@ pymysql.install_as_MySQLdb()
 SECRET_KEY = SECRET_KEY
 
 DATABASES = DATABASES
+
+WEATHER_API_Key = WEATHER_API_Key
 #
 
 DEBUG = True
