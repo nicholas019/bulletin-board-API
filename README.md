@@ -99,6 +99,7 @@ body를 통해 전달된 writer,password값을 유효성 검사를 할수없어 
 
 ## ERD
 ERD 
+<img width="511" alt="스크린샷 2022-09-07 오후 8 39 46" src="https://user-images.githubusercontent.com/103249222/188869499-741858c7-219a-4e63-80d4-fe8411cdc2f1.png">
 
 
 <br>
