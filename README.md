@@ -51,6 +51,12 @@
 - 처음에 detail+update+delete기능을 동시에 가능한 RetrieveUpdateDestroyAPIView를 활용하여 구현하려고 했으나 
 body를 통해 전달된 writer,password값을 유효성 검사를 할수없어 별도의 DestroyAPIView로 따로 API구현
 - destroy 메소드를 일부 수정하여 유효성검사 후에 삭제 기능 구현
+<br>
+
+### 추가구현사항
+1. Pagination 기능 구현 완료
+- PageNumberPagination 클래스 활용하여 기능 구현
+- 한페이지당 data갯수는 `page_size`로 기본 10개로 설정 
 
 <br>
 
