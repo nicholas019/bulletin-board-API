@@ -25,7 +25,7 @@ class BoardListCreateVIew(generics.ListCreateAPIView):
         작성 시간으로 한국기준(서울) 날씨기록
         """
         url = "https://api.weatherapi.com/v1/current.json"
-        params = {'key': settings.WEATHER_API_Key, 'q': 'korea', 'aqi' :"yes"}
+        params = {'key': settings.WEATHER_API_KEY, 'q': 'korea', 'aqi' :"yes"}
         res = requests.get(url, params=params)
         if not res.ok:
             raise ValidationError('날씨기록API에 오류가 발생하였습니다 잠시후 다시 시도해주세요')
