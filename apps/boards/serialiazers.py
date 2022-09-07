@@ -8,10 +8,11 @@ from apps.boards.models import Board
 
 class BoardSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only = True)
+    weather  = serializers.CharField(read_only = True)
 
     class Meta:
         model = Board
-        fields = ("pk", "title", "content", "writer", "password", "created_at")
+        fields = ("pk", "title", "content", "writer", "password", "weather", "created_at")
         
     # 유효성 검사
     def validate(self, validated_data):
